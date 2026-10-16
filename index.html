@@ -1,1 +1,38 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Video Generator</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#0b0b16;color:#f6f5ff}header{padding:20px 6%;border-bottom:1px solid #29263d;font-weight:bold;font-size:20px;color:#a99aff}.wrap{max-width:900px;margin:45px auto;padding:20px}.tag{color:#a99aff;font-size:13px;letter-spacing:2px}h1{font-size:clamp(36px,7vw,62px);margin:14px 0}p{color:#b9b7ce;line-height:1.6}.panel{margin-top:28px;background:#151425;border:1px solid #302c4a;padding:22px;border-radius:18px}label{display:block;margin:16px 0 8px;color:#ddd9f4}textarea,select,input{width:100%;padding:13px;background:#0d0c19;color:white;border:1px solid #393451;border-radius:10px}textarea{min-height:120px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}button{width:100%;margin-top:20px;padding:15px;border:0;border-radius:10px;background:linear-gradient(90deg,#7b5cff,#27c7d9);color:#fff;font-weight:bold;font-size:16px}.status{margin-top:18px;padding:14px;background:#211f35;border-radius:10px;color:#c6c0e9;font-size:14px}.foot{font-size:12px;color:#8d89a6;margin-top:25px}@media(max-width:560px){.row{grid-template-columns:1fr}.wrap{margin:20px auto}}
+</style>
+</head>
+<body>
+<header>✦ AI VIDEO GENERATOR</header>
+<main class="wrap">
+<div class="tag">YOUR CREATIVE WORKSPACE</div>
+<h1>Your idea.<br><span style="color:#a99aff">Your next video.</span></h1>
+<p>Turn your creative idea into a video concept. Write a prompt, add a reference image and choose your format.</p>
+<section class="panel">
+<label for="prompt">Describe your video</label>
+<textarea id="prompt" placeholder="Example: A cinematic supplement product reel in a dramatic gym, blue lighting, close-up shots and smooth camera movement..."></textarea>
+<label for="image">Reference image (optional)</label>
+<input id="image" type="file" accept="image/*">
+<div class="row">
+<div><label for="ratio">Video format</label><select id="ratio"><option>9:16 — Reels / Shorts</option><option>16:9 — YouTube</option><option>1:1 — Square</option></select></div>
+<div><label for="duration">Duration</label><select id="duration"><option>5 seconds</option><option>10 seconds</option><option>15 seconds</option><option>30 seconds</option></select></div>
+</div>
+<button id="make">Prepare my video request →</button>
+<div class="status" id="status">Ready when you are. The AI video engine still needs to be connected.</div>
+<div id="preview"></div>
+</section>
+<div class="foot">Prototype version · Actual AI video generation requires a connected model/API and backend.</div>
+</main>
+<script>
+const promptBox=document.getElementById('prompt'),statusBox=document.getElementById('status'),imageInput=document.getElementById('image');
+document.getElementById('make').addEventListener('click',()=>{if(!promptBox.value.trim()){statusBox.textContent='Please describe your video idea first.';promptBox.focus();return;}statusBox.textContent='Your request is prepared. To generate an actual video, connect an AI video model through a secure backend.';});
+imageInput.addEventListener('change',()=>{const f=imageInput.files[0];if(!f)return;const url=URL.createObjectURL(f);document.getElementById('preview').innerHTML='<img alt="Reference preview" style="width:100%;max-height:280px;object-fit:contain;margin-top:16px;border-radius:10px" src="'+url+'">';});
+</script>
+</body>
+</html>
